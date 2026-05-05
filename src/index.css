@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --font-sans: var(--app-font-sans);
+  --font-serif: var(--app-font-serif);
+}
+
+:root {
+  /* Warm earthy palette */
+  --background: 40 33% 96%; /* #FAF6F0 */
+  --foreground: 25 33% 13%; /* #2C1E16 */
+  
+  --border: 25 20% 85%;
+  --input: 25 20% 85%;
+  --ring: 20 44% 43%;
+
+  --primary: 20 44% 43%; /* #9E5B3D Terracotta */
+  --primary-foreground: 40 33% 96%;
+  
+  --muted: 35 25% 90%;
+  --muted-foreground: 25 15% 45%;
+
+  --app-font-sans: 'DM Sans', sans-serif;
+  --app-font-serif: 'Playfair Display', serif;
+}
+
+body {
+  @apply font-sans antialiased bg-background text-foreground;
+  scroll-behavior: smooth;
+  /* subtle noise texture */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif font-normal;
+}
+
+.chapter-text p {
+  @apply mb-8 leading-relaxed text-lg md:text-xl text-foreground/90 font-sans font-light;
+}
+.chapter-text p:last-child {
+  @apply mb-0;
+}
+
+/* ===== Custom Cursor ===== */
+html.custom-cursor-active,
+html.custom-cursor-active body,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+@media (pointer: coarse) {
+  html.custom-cursor-active,
+  html.custom-cursor-active body,
+  html.custom-cursor-active * {
+    cursor: auto !important;
+  }
+  .custom-cursor-ring,
+  .custom-cursor-dot {
+    display: none !important;
+  }
+}
+
+.custom-cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  margin-left: -18px;
+  margin-top: -18px;
+  border: 1px solid rgba(158, 91, 61, 0.55);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  will-change: transform;
+}
+
+.custom-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  background-color: #9E5B3D;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 10000;
+  will-change: transform;
+}
+
+/* ===== Custom Scrollbar ===== */
+/* WebKit browsers */
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(158,91,61,0.18);
+  border-radius: 9999px;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(158,91,61,0.32);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(158,91,61,0.18) transparent;
+}
