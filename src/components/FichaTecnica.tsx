@@ -77,27 +77,6 @@ export function FichaTecnica({ readingMinutes }: { readingMinutes: number }) {
           Brasil · MMXXVI
         </motion.p>
 
-        <div className="mt-8 text-center">
-          <p className="text-sm mb-3 opacity-70">Links</p>
-          <div className="flex items-center justify-center gap-6">
-            <a
-              href="https://github.com/Userlovesplay/diario-de-um-cafe"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans text-sm underline hover:opacity-80"
-            >
-              Repositório do projeto
-            </a>
-            <a
-              href="https://guilhermeoliveira.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-sans text-sm underline hover:opacity-80"
-            >
-              Meu site
-            </a>
-          </div>
-        </div>
       </div>
     </section>
   );
